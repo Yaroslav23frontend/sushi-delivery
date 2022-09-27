@@ -11,7 +11,7 @@ export default function CartButton() {
   }, [cartCount]);
   return (
     <Link href="/cart">
-      <div className="fixed bottom-2 right-2 rounded-full p-4 bg-gray-600 hover:bg-gray-800 active:bg-gray-900 text-white cursor-pointer">
+      <div className="z-10 fixed bottom-2 right-2 rounded-full p-4 bg-gray-600 hover:bg-gray-800 active:bg-gray-900 text-white cursor-pointer">
         <Typography
           color="white"
           variant="span"

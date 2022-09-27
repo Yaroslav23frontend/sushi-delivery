@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { TypographyProps } from "./types";
 import { weights, colors, size } from "./typography.config";
 const StyledDynamicComponent = styled.div``;
@@ -27,6 +27,8 @@ const Typography = ({
 
 Typography.defaultProps = {
   tag: "p",
+  variant: "p",
+  weight: "normal",
 };
 
 export default Typography;

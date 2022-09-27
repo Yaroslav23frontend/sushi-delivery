@@ -5,11 +5,11 @@ export const navItems: Array<PropsNav> = [
     title: "Home",
   },
   {
-    link: "/categories",
-    title: "Categories",
+    link: "#contact",
+    title: "Contact",
   },
   {
-    link: "/about",
+    link: "#about",
     title: "About",
   },
 ];
