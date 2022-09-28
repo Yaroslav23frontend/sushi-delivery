@@ -6,7 +6,7 @@ export default function Logo() {
     <Link href="/">
       <div className="flex gap-2 items-center cursor-pointer">
         {logo.icon}
-        <Typography variant="h2" weight="semibold" color="white">
+        <Typography variant="h2" tag="p" weight="semibold" color="white">
           {logo.text}
         </Typography>
       </div>

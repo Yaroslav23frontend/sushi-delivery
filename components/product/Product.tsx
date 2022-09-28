@@ -31,7 +31,9 @@ export default function Product({ data }: ProductProps) {
         </Typography>
         <button
           onClick={() => {
-            addItem({ ...data, sku: data.id }, 1);
+            const item = Object.assign({}, data);
+            delete item.categories;
+            addItem({ ...item, sku: item.id });
           }}
         >
           <BsCartFill size={22} />

@@ -7,3 +7,6 @@ export interface ProductsProps {
     drinks: Array<Product>;
   };
 }
+export interface ProductsCategoryProps {
+  el: "sets" | "rolls" | "nigiri" | "drinks";
+}

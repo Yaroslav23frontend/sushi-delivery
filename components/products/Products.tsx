@@ -10,8 +10,8 @@ export default function Products({ products }: ProductsProps) {
         Products
       </Typography>
       <div className="flex flex-col w-full items-center">
-        {Object.keys(products).map((el) => {
-          return <ProductsContainer products={products[el]} />;
+        {(Object.keys(products) as Array<keyof typeof products>).map((el) => {
+          return <ProductsContainer products={products[el]} key={el} />;
         })}
       </div>
     </div>

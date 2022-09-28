@@ -1,4 +1,5 @@
 import Head from "next/head";
+import React from "react";
 import { CartProvider } from "use-shopping-cart";
 import Nav from "../components/nav/Nav";
 import { ProductsProps } from "../components/products/types";
@@ -15,8 +16,8 @@ import CartButton from "../components/cart/cartButton/CartButton";
 import Container from "../components/container/Container";
 import Products from "../components/products/Products";
 import Footer from "../components/footer/Footer";
+import Cart from "../components/cart/Cart";
 const Home = ({ products }: ProductsProps) => {
-  console.log(products);
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency="USD">
       <div className="flex min-h-screen flex-col items-center ">
