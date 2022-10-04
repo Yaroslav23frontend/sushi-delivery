@@ -2,7 +2,6 @@ import Head from "next/head";
 import React from "react";
 import { CartProvider } from "use-shopping-cart";
 import Nav from "../components/nav/Nav";
-import { ProductsProps } from "../components/products/types";
 import { sanityClient } from "../lib/sanity/client";
 import {
   merchQueryMainDrinks,
@@ -10,20 +9,23 @@ import {
   merchQueryMainRolls,
   merchQueryMainSets,
 } from "../lib/sanity/merchQuery";
+import { aboutQuery } from "../lib/sanity/aboutQuery";
 import { revalidate } from "../staticProps";
 import getStripe from "../lib/stripe/getStripe";
 import CartButton from "../components/cart/cartButton/CartButton";
 import Container from "../components/container/Container";
 import Products from "../components/products/Products";
 import Footer from "../components/footer/Footer";
-import Cart from "../components/cart/Cart";
 import Header from "../components/header/Header";
 import {
   promotionProductsQuery,
   promotionQuery,
 } from "../lib/sanity/promotionQuery";
 import { HomeProps } from "../types/homePage";
-const Home = ({ products, promotion, promotionProducts }: HomeProps) => {
+import Typography from "../components/UI/typography/Typography";
+import Logo from "../components/logo/Logo";
+import ScrollToTop from "../components/scrollTop/ScrollTop";
+const Home = ({ products, promotion, promotionProducts, about }: HomeProps) => {
   console.log(promotion);
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency="USD">
@@ -34,11 +36,29 @@ const Home = ({ products, promotion, promotionProducts }: HomeProps) => {
         </Head>
         <Nav />
         <Header data={promotion} products={promotionProducts} />
-        <CartButton />
+
         <Container>
           <Products products={products} />
+          <div className="p-2">
+            <div id="about" className="w-full bg-gray-100  rounded-lg my-10">
+              <div className="w-full bg-gray-500 p-2 rounded-t-lg">
+                <Logo />
+              </div>
+              <div className="p-5 my-5">
+                <Typography variant="h1" tag="h2" weight="bold" sx="my-2">
+                  About
+                </Typography>
+                <Typography>{about.body}</Typography>
+              </div>
+              <div className="w-full flex justify-end bg-gray-500 p-2 rounded-b-lg">
+                <Logo />
+              </div>
+            </div>
+          </div>
         </Container>
         <Footer />
+        <CartButton />
+        <ScrollToTop />
       </div>
     </CartProvider>
   );
@@ -51,12 +71,14 @@ export async function getStaticProps() {
   const nigiri = await sanityClient.fetch(merchQueryMainNigiri);
   const drinks = await sanityClient.fetch(merchQueryMainDrinks);
   const promotion = await sanityClient.fetch(promotionQuery);
+  const about = await sanityClient.fetch(aboutQuery);
   const promotionProducts = await sanityClient.fetch(promotionProductsQuery);
   return {
     props: {
       products: { sets, rolls, nigiri, drinks },
       promotion,
       promotionProducts,
+      about,
     },
     revalidate,
   };

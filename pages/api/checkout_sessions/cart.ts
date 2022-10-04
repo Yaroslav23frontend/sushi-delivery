@@ -33,6 +33,9 @@ export default async function handler(
       console.log(line_items);
 
       const checkoutSession = await stripe.checkout.sessions.create({
+        shipping_address_collection: {
+          allowed_countries: ["US", "CA"],
+        },
         line_items: line_items,
         mode: "payment",
         success_url: `http://localhost:3000/`,

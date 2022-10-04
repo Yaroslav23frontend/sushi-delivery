@@ -7,7 +7,7 @@ import GoogleMap from "../googleMap/GoogleMap";
 
 export default function Footer() {
   return (
-    <footer className="bg-white w-full mt-5">
+    <footer id="contact" className="bg-white w-full mt-5">
       <div className="w-full bg-gray-100">
         <GoogleMap />
         <Container>

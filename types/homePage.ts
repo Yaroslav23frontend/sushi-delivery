@@ -13,4 +13,8 @@ export interface HomeProps {
     image: string;
   };
   promotionProducts: Array<Product>;
+  about: {
+    image: string;
+    body: string;
+  };
 }
