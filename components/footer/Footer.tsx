@@ -14,10 +14,12 @@ export default function Footer() {
           <div className="w-full grid grid-cols-1 md:grid-cols-2 place-items-stretch bg-gray-100 gap-5 my-5 p-2">
             <ContactForm />
             <div className="p-5 bg-white rounded-lg w-full">
-              <Typography variant="h1" tag="h2" weight="bold">
+              <Typography variant="h1" tag="h2" weight="bold" sx="mb-2.5">
                 Get in tuch
               </Typography>
-              <Typography variant="h3">Sushi,Robertson Equipment</Typography>
+              <Typography variant="h3">
+                Sushi,534 Morris Ford Rd, Colerain, NC 27924, United States
+              </Typography>
               <Typography variant="h3">+380991709817</Typography>
               <Typography variant="h3">
                 Every day from 10.00 to 22.00

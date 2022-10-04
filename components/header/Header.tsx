@@ -1,23 +1,32 @@
 import React from "react";
 import Container from "../container/Container";
 import Typography from "../UI/typography/Typography";
-import { useCountdown } from "../../hooks/useCountdown";
 import { HeaderProps } from "./types";
 import { urlFor } from "../../lib/sanity/client";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import Bg from "./bg/Bg";
+import BgContainer from "./bg/BgContainer";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation, EffectCreative, Autoplay } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import Product from "../product/Product";
 const CountDown = dynamic(() => import("./countDown/CountDown"), {
   ssr: false,
 });
-export default function Header({ data }: HeaderProps) {
+export default function Header({ data, products }: HeaderProps) {
   return (
     <div className="relative w-screen h-screen">
       <div className="absolute w-full h-full bg-black overflow-hidden flex justify-center items-center">
-        <img
+        {/* <img
           className="w-screen h-screen"
           src={`${urlFor(data.image)}`}
           alt="bgImage"
-        />
+        /> */}
+        <BgContainer url={data.image} />
       </div>
       <div className="absolute bg-black opacity-50 w-full h-full"></div>
       <Container>
@@ -35,6 +44,30 @@ export default function Header({ data }: HeaderProps) {
             {data.body}
           </Typography>
           <CountDown endDate={data.endDate} />
+          <div className="w-full max-w-xs flex justify-center p-2">
+            <Swiper
+              spaceBetween={30}
+              centeredSlides={true}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay]}
+              className="mySwiper"
+            >
+              {products.map((el) => {
+                return (
+                  <SwiperSlide
+                    className="bg-white rounded-lg max-w-xs"
+                    key={el.id}
+                  >
+                    <Product data={el} />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
+
           <Link href="/promotion">
             <div className="py-2 px-4 bg-orange-500 rounded-xl cursor-pointer hover:bg-orange-600 active:bg-orange-700">
               Promotion Sets

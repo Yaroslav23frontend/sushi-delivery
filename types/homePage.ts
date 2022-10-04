@@ -12,4 +12,5 @@ export interface HomeProps {
     startDate: string;
     image: string;
   };
+  promotionProducts: Array<Product>;
 }

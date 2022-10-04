@@ -103,7 +103,7 @@ export default function Product({ data }: ProductProps) {
             });
           }}
         >
-          <BsCartFill size={22} />
+          <BsCartFill color="black" size={22} />
         </button>
       </div>
     </div>

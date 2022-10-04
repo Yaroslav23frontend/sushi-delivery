@@ -1,3 +1,5 @@
+import { Product } from "../product/types";
+
 export interface HeaderProps {
   data: {
     body: string;
@@ -5,4 +7,8 @@ export interface HeaderProps {
     startDate: string;
     image: string;
   };
+  products: Array<Product>;
+}
+export interface BgProps {
+  url: string;
 }
