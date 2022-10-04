@@ -1,5 +1,4 @@
 ///studio/schemas/merch.js
-
 export default {
   name: "merch",
   title: "Merch",
@@ -18,6 +17,17 @@ export default {
         {
           type: "reference",
           to: { type: "category" },
+        },
+      ],
+    },
+    {
+      name: "promotion",
+      title: "Promotion",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: { type: "promotion" },
         },
       ],
     },

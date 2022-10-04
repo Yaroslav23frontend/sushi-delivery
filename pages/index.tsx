@@ -17,15 +17,20 @@ import Container from "../components/container/Container";
 import Products from "../components/products/Products";
 import Footer from "../components/footer/Footer";
 import Cart from "../components/cart/Cart";
-const Home = ({ products }: ProductsProps) => {
+import Header from "../components/header/Header";
+import { promotionQuery } from "../lib/sanity/promotionQuery";
+import { HomeProps } from "../types/homePage";
+const Home = ({ products, promotion }: HomeProps) => {
+  console.log(promotion);
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency="USD">
-      <div className="flex min-h-screen flex-col items-center ">
+      <div className="flex min-h-screen flex-col items-center overflow-hidden">
         <Head>
           <title>Create Next App</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Nav />
+        <Header data={promotion} />
         <CartButton />
         <Container>
           <Products products={products} />
@@ -42,8 +47,9 @@ export async function getStaticProps() {
   const rolls = await sanityClient.fetch(merchQueryMainRolls);
   const nigiri = await sanityClient.fetch(merchQueryMainNigiri);
   const drinks = await sanityClient.fetch(merchQueryMainDrinks);
+  const promotion = await sanityClient.fetch(promotionQuery);
   return {
-    props: { products: { sets, rolls, nigiri, drinks } },
+    props: { products: { sets, rolls, nigiri, drinks }, promotion },
     revalidate,
   };
 }

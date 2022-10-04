@@ -12,13 +12,16 @@ export default function CartButton() {
   return (
     <Link href="/cart">
       <div className="z-10 fixed bottom-2 right-2 rounded-full p-4 bg-gray-600 hover:bg-gray-800 active:bg-gray-900 text-white cursor-pointer">
-        <Typography
-          color="white"
-          variant="span"
-          sx="absolute flex justify-center items-center top-1/2 left-1/2 -translate-y-5 -translate-x-1/2 bg-orange-500 rounded-full w-5 h-5"
-        >
-          {count}
-        </Typography>
+        {count > 0 && (
+          <Typography
+            color="white"
+            variant="span"
+            sx="absolute flex justify-center items-center top-1/2 left-1/2 -translate-y-5 -translate-x-1/2 bg-orange-500 rounded-full w-5 h-5"
+          >
+            {count}
+          </Typography>
+        )}
+
         <BsCartFill size={30} />
       </div>
     </Link>
