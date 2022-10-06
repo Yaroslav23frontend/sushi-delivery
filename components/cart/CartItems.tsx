@@ -16,7 +16,6 @@ export default function CartItems() {
       "/api/checkout_sessions/cart",
       cartDetails
     );
-
     if (response.statusCode === 500) {
       setLoading(false);
       console.error(response.message);

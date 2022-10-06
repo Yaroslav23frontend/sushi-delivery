@@ -30,12 +30,12 @@ export default function Search() {
       {active && (
         <button
           onClick={() => setActive(false)}
-          className="fixed z-0 opacity-0 top-0 left-0 block w-full h-full max-w-screen max-h-screen bg-black"
+          className="fixed z-20 opacity-0 top-0 left-0 block w-full h-full max-w-screen max-h-screen bg-black"
         >
           qw
         </button>
       )}
-      <div className="fixed flex self-start justify-center items-center bottom-20 right-2 gap-2">
+      <div className="fixed z-20 flex self-start justify-center items-center bottom-20 right-2 gap-2">
         {active && (
           <button
             onClick={() => setActive(false)}
