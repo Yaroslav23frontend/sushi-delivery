@@ -3,7 +3,7 @@ import CommentItem from "../commentItem/CommentItem";
 import Typography from "../../UI/typography/Typography";
 export default function Comments({ data }: CommentsProps) {
   return (
-    <div className="w-full flex flex-col justify-center p-2 space-y-2">
+    <div className="w-full flex flex-col justify-center p-5 space-y-2 rounded-lg shadow-lg">
       <Typography variant="h1" weight="bold">
         Comments
       </Typography>

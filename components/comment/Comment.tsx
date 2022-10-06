@@ -31,7 +31,7 @@ export default function CommentForm() {
   return (
     <>
       {submited ? (
-        <div className="w-full h-full flex flex-col items-center justify-center max-w-4xl mx-auto bg-white rounded-lg">
+        <div className="w-full h-full flex flex-col items-center justify-center max-w-4xl mx-auto bg-white rounded-lg shadow-lg">
           <Typography variant="h3" tag="h3" weight="semibold">
             Thank you for submitting your comment!
           </Typography>
@@ -42,7 +42,7 @@ export default function CommentForm() {
       ) : (
         <div className="w-full h-full">
           <form
-            className="w-full h-full mx-auto bg-white p-5 rounded-lg"
+            className="w-full h-full mx-auto bg-white p-5 rounded-lg shadow-lg mb-5"
             onSubmit={formik.handleSubmit}
           >
             <Typography variant="h1" tag="h3" weight="semibold" sx="mt-1 mb-2">

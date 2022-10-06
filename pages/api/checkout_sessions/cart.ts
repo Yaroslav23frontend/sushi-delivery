@@ -26,8 +26,8 @@ export default async function handler(
         },
         line_items: line_items,
         mode: "payment",
-        success_url: `http://localhost:3000/`,
-        cancel_url: `http://localhost:3000/`,
+        success_url: process.env.SUCCESS_URL || `http://localhost:3000/`,
+        cancel_url: process.env.NEXT_URL || `http://localhost:3000/`,
       });
       console.log(checkoutSession);
       res.status(200).json(checkoutSession);
