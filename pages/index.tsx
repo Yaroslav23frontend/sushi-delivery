@@ -49,7 +49,7 @@ const Home = ({
   return (
     <div className="flex min-h-screen flex-col items-center overflow-hidden">
       <Head>
-        <title>Create Next App</title>
+        <title>Sushi</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
