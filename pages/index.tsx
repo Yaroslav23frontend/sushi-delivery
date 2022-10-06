@@ -53,9 +53,9 @@ const Home = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
-      <Header data={promotion} products={promotionProducts} />
+      <Header data={promotion} />
       <Container>
-        <Products products={products} />
+        <Products products={products} promotion={promotionProducts} />
         <div className="p-2">
           <div id="about" className="w-full bg-gray-100  rounded-lg my-10">
             <div className="w-full bg-gray-500 p-2 rounded-t-lg">
@@ -90,7 +90,11 @@ export async function getServerSideProps() {
   const drinks = await sanityClient.fetch(merchQueryMainDrinks);
   const promotion = await sanityClient.fetch(promotionQuery);
   const about = await sanityClient.fetch(aboutQuery);
-  const promotionProducts = await sanityClient.fetch(promotionProductsQuery);
+  const prom =
+    new Date().getTime() < new Date(promotion.endDate).getTime() &&
+    new Date().getTime() >= new Date(promotion.startDate).getTime();
+  const promotionProducts =
+    (prom && (await sanityClient.fetch(promotionProductsQuery))) || [];
   const comments = await sanityClient.fetch(commentQuery);
   return {
     props: {

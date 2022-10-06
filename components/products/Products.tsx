@@ -4,7 +4,7 @@ import { ProductsProps } from "./types";
 import { CartProvider } from "use-shopping-cart";
 import getStripe from "../../lib/stripe/getStripe";
 import CartButton from "../cart/cartButton/CartButton";
-export default function Products({ products }: ProductsProps) {
+export default function Products({ products, promotion }: ProductsProps) {
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency="USD">
       <div
@@ -15,8 +15,23 @@ export default function Products({ products }: ProductsProps) {
           Products
         </Typography>
         <div className="flex flex-col w-full items-center">
+          {promotion.length > 0 && (
+            <ProductsContainer
+              products={promotion}
+              title={"Promotion"}
+              link={"promotion"}
+            />
+          )}
+
           {(Object.keys(products) as Array<keyof typeof products>).map((el) => {
-            return <ProductsContainer products={products[el]} key={el} />;
+            return (
+              <ProductsContainer
+                products={products[el]}
+                title={products[el][0]["categories"][0]["title"]}
+                link={products[el][0]["categories"][0].slug.current}
+                key={el}
+              />
+            );
           })}
         </div>
         <CartButton />

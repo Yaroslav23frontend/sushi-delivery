@@ -7,7 +7,6 @@ export interface HeaderProps {
     startDate: string;
     image: string;
   };
-  products: Array<Product>;
 }
 export interface BgProps {
   url: string;

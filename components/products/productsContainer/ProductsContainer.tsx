@@ -1,15 +1,19 @@
 import Link from "next/link";
 import Product from "../../product/Product";
-import { ProductsProps } from "../../product/types";
+import { ContainerProductsProps } from "./types";
 import Typography from "../../UI/typography/Typography";
-export default function ProductsContainer({ products }: ProductsProps) {
+export default function ProductsContainer({
+  products,
+  title,
+  link,
+}: ContainerProductsProps) {
   return (
     <div className="w-full p-2 mt-10">
       <div className="flex justify-between items-center">
         <Typography variant="h2" tag="h2" weight="bold" sx="text-center">
-          {products[0].categories[0].title}
+          {title}
         </Typography>
-        <Link href={products[0].categories[0].slug.current}>
+        <Link href={link}>
           <Typography
             variant="p"
             tag="p"

@@ -20,17 +20,6 @@ export default async function handler(
       let sanityData = await sanityClient.fetch(merchQuery);
       // The POST request is then validated against the data from Sanity.
       const line_items = validateCartItems(sanityData, cartItems);
-      const transformed = line_items.map((el) => {
-        return {
-          price_data: {
-            unit_amount: Number(el.price_data?.unit_amount) * 100,
-            ...el.price_data,
-          },
-          quantity: Number(el.quantity),
-        };
-      });
-      console.log(line_items);
-
       const checkoutSession = await stripe.checkout.sessions.create({
         shipping_address_collection: {
           allowed_countries: ["US", "CA"],

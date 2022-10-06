@@ -1,8 +1,10 @@
 import Container from "../container/Container";
 import Typography from "../UI/typography/Typography";
-import GoogleMap from "../googleMap/GoogleMap";
 import dynamic from "next/dynamic";
 const ContactForm = dynamic(() => import("../contactUs/ContactUs"), {
+  ssr: false,
+});
+const GoogleMap = dynamic(() => import("../googleMap/GoogleMap"), {
   ssr: false,
 });
 export default function Footer() {

@@ -1,6 +1,7 @@
-import { ProductsProps } from "../types";
+import { Product } from "../../product/types";
 
 export interface ContainerProductsProps {
-  children: any;
-  products: ProductsProps;
+  products: Array<Product>;
+  title: string;
+  link: string;
 }

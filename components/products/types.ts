@@ -6,6 +6,7 @@ export interface ProductsProps {
     nigiri: Array<Product>;
     drinks: Array<Product>;
   };
+  promotion: Array<Product>;
 }
 export interface ProductsCategoryProps {
   el: "sets" | "rolls" | "nigiri" | "drinks";

@@ -10,10 +10,7 @@ const BgContainer = dynamic(() => import("./bg/BgContainer"), {
 const CountDown = dynamic(() => import("./countDown/CountDown"), {
   ssr: false,
 });
-const Corusel = dynamic(() => import("./corusel/Corusel"), {
-  ssr: false,
-});
-export default function Header({ data, products }: HeaderProps) {
+export default function Header({ data }: HeaderProps) {
   return (
     <div className="relative w-screen h-screen">
       <div className="absolute w-full h-full bg-black overflow-hidden flex justify-center items-center">
@@ -31,16 +28,20 @@ export default function Header({ data, products }: HeaderProps) {
           >
             Delivery of Japanese Cuisine "Sushi"
           </Typography>
-          <Typography color="white" variant="h3">
-            {data.body}
-          </Typography>
-          <CountDown endDate={data.endDate} />
-          <Corusel products={products} />
-          <Link href="/promotion">
-            <div className="py-2 px-4 bg-orange-500 rounded-xl cursor-pointer hover:bg-orange-600 active:bg-orange-700">
-              Promotion Sets
-            </div>
-          </Link>
+          {new Date().getTime() < new Date(data.endDate).getTime() &&
+            new Date().getTime() >= new Date(data.startDate).getTime() && (
+              <>
+                <Typography color="white" variant="h3">
+                  {data.body}
+                </Typography>
+                <CountDown endDate={data.endDate} />
+                <Link href="/promotion">
+                  <div className="py-2 px-4 bg-orange-500 rounded-xl cursor-pointer hover:bg-orange-600 active:bg-orange-700">
+                    Promotion Sets
+                  </div>
+                </Link>
+              </>
+            )}
         </div>
       </Container>
     </div>

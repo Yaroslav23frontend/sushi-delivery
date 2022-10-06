@@ -8,10 +8,16 @@ import { useState, useEffect } from "react";
 export default function Product({ data }: ProductProps) {
   const { addItem, cartDetails } = useShoppingCart();
   const [quantity, setQuantity] = useState(0);
+  const endDate = data?.promotion?.map((el) => el.endDate);
+  const startDate = data?.promotion?.map((el) => el.startDate);
   const promotion =
     data?.promotion !== undefined
       ? data.promotion.reduce((acc, el) => acc + el.promotion, 0)
       : 0;
+  const prom =
+    promotion > 0 &&
+    new Date(endDate[endDate.length - 1]).getTime() > new Date().getTime() &&
+    new Date(startDate[startDate.length - 1]).getTime() <= new Date().getTime();
   useEffect(() => {
     const temp = Object.values(cartDetails).filter(
       (el) => el.name === data.name
@@ -48,7 +54,7 @@ export default function Product({ data }: ProductProps) {
             {quantity}
           </Typography>
         )}
-        {promotion > 0 && (
+        {prom && (
           <Typography
             color="white"
             variant="span"
@@ -73,7 +79,7 @@ export default function Product({ data }: ProductProps) {
           <Typography
             variant="p"
             tag="p"
-            sx={promotion > 0 ? `line-through` : ""}
+            sx={prom ? `line-through` : ""}
             weight="bold"
           >
             {formatCurrencyString({
@@ -81,7 +87,7 @@ export default function Product({ data }: ProductProps) {
               currency: "USD",
             })}
           </Typography>
-          {promotion > 0 && (
+          {prom && (
             <Typography
               variant="p"
               tag="span"
@@ -101,7 +107,7 @@ export default function Product({ data }: ProductProps) {
           onClick={() => {
             const item = Object.assign({}, data);
             delete item.categories;
-            item.price = data.price - (data.price / 100) * promotion;
+            if (prom) item.price = data.price - (data.price / 100) * promotion;
             addItem({
               ...item,
               sku: item.id,

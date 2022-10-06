@@ -6,25 +6,27 @@ export default function CountDown({ endDate }: CountDownProps) {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       const interval = setInterval(() => {
-        const countDown =
-          new Date("2022-10-06T19:45:00.000Z").getTime() - new Date().getTime();
-        // calculate time left
-        const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
-        setDays(days);
-        const hours = Math.floor(
-          (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        setHours(hours);
-        const minutes = Math.floor(
-          (countDown % (1000 * 60 * 60)) / (1000 * 60)
-        );
-        setMinutes(minutes);
-        const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
-        setSeconds(seconds);
+        const end = new Date(endDate).getTime();
+        const start = new Date().getTime();
+        if (end > start) {
+          const countDown = new Date(endDate).getTime() - new Date().getTime();
+          // calculate time left
+          const days = Math.floor(countDown / (1000 * 60 * 60 * 24));
+          setDays(days);
+          const hours = Math.floor(
+            (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          setHours(hours);
+          const minutes = Math.floor(
+            (countDown % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          setMinutes(minutes);
+          const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
+          setSeconds(seconds);
+        }
       }, 1000);
       return () => clearInterval(interval);
     }
@@ -32,11 +34,9 @@ export default function CountDown({ endDate }: CountDownProps) {
   if (!endDate) {
     return null;
   }
-  if (typeof window === "undefined") {
-    return <></>;
-  } else {
-    return (
-      <>
+  return (
+    <>
+      {days !== 0 && hours !== 0 && minutes !== 0 && seconds !== 0 && (
         <div className="flex gap-5">
           <div className="flex flex-col justify-center items-center">
             <Typography variant="h1" color="white" weight="bold">{`${
@@ -74,7 +74,7 @@ export default function CountDown({ endDate }: CountDownProps) {
             </Typography>
           </div>
         </div>
-      </>
-    );
-  }
+      )}
+    </>
+  );
 }
