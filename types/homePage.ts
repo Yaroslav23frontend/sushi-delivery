@@ -1,3 +1,4 @@
+import { CommentProps } from "../components/comment/types";
 import { Product } from "../components/product/types";
 export interface HomeProps {
   products: {
@@ -17,4 +18,5 @@ export interface HomeProps {
     image: string;
     body: string;
   };
+  comments: Array<CommentProps>;
 }

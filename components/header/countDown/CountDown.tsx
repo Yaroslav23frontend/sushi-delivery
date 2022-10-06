@@ -37,41 +37,43 @@ export default function CountDown({ endDate }: CountDownProps) {
   } else {
     return (
       <>
-        <Typography
-          variant="h1"
-          tag="p"
-          color="white"
-          weight="bold"
-          sx="flex gap-5"
-        >
+        <div className="flex gap-5">
           <div className="flex flex-col justify-center items-center">
-            {`${days < 10 ? `0${days}` : days}`}
+            <Typography variant="h1" color="white" weight="bold">{`${
+              days < 10 ? `0${days}` : days
+            }`}</Typography>
             <Typography tag="span" variant="h3" color="white">
               Days
             </Typography>
           </div>
           :
           <div className="flex flex-col justify-center items-center">
-            {`${hours < 10 ? `0${hours}` : hours}`}
+            <Typography variant="h1" weight="bold" color="white">{`${
+              hours < 10 ? `0${hours}` : hours
+            }`}</Typography>
             <Typography tag="span" variant="h3" color="white">
               Hours
             </Typography>
           </div>
           :
           <div className="flex flex-col justify-center items-center">
-            {`${minutes < 10 ? `0${minutes}` : minutes}`}
+            <Typography variant="h1" weight="bold" color="white">{`${
+              minutes < 10 ? `0${minutes}` : minutes
+            }`}</Typography>
             <Typography tag="span" variant="h3" color="white">
               Minutes
             </Typography>
           </div>
           :
           <div className="flex flex-col justify-center items-center">
-            {`${seconds < 10 ? `0${seconds}` : seconds}`}
+            <Typography variant="h1" weight="bold" color="white">{`${
+              seconds < 10 ? `0${seconds}` : seconds
+            }`}</Typography>
             <Typography tag="span" variant="h3" color="white">
               Seconds
             </Typography>
           </div>
-        </Typography>
+        </div>
       </>
     );
   }

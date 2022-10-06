@@ -10,10 +10,9 @@ import { revalidate } from "../staticProps";
 export default function Nigiri({ products }: ProductsProps) {
   return <ProductsPage products={products} />;
 }
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const products = await sanityClient.fetch(merchQueryNigiri);
   return {
     props: { products },
-    revalidate,
   };
 }

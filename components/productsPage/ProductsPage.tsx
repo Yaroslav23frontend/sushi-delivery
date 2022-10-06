@@ -8,6 +8,8 @@ import Footer from "../footer/Footer";
 import Nav from "../nav/Nav";
 import CartButton from "../cart/cartButton/CartButton";
 import Main from "../Main";
+import Search from "../search/Search";
+import ScrollToTop from "../scrollTop/ScrollTop";
 
 export default function ProductsPage({ products }: ProductsProps) {
   return (
@@ -35,6 +37,8 @@ export default function ProductsPage({ products }: ProductsProps) {
             </div>
           </Main>
         </Container>
+        <Search />
+        <ScrollToTop />
         <CartButton />
         <Footer />
       </>

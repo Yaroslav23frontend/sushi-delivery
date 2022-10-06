@@ -1,19 +1,21 @@
 import { useFormik, FormikProps } from "formik";
 import { useState } from "react";
 import Typography from "../UI/typography/Typography";
-import { ContactProps } from "./types";
+import { CommentProps } from "./types";
 import { validationSchema } from "./contact.config";
 import FormInput from "../UI/input/Input";
-export default function ContactForm() {
+import FormTextarea from "../UI/textarea/Textarea";
+export default function CommentForm() {
   const [submited, setSubmited] = useState(false);
-  const formik: FormikProps<ContactProps> = useFormik<ContactProps>({
+  const formik: FormikProps<CommentProps> = useFormik<CommentProps>({
     initialValues: {
       name: "",
-      phone: "",
+      email: "",
+      comment: "",
     },
     validationSchema,
     onSubmit: (values) => {
-      fetch("/api/contactUs", {
+      fetch("/api/createComment", {
         method: "POST",
         body: JSON.stringify({ ...values }),
       })
@@ -30,21 +32,24 @@ export default function ContactForm() {
     <>
       {submited ? (
         <div className="w-full h-full flex flex-col items-center justify-center max-w-4xl mx-auto bg-white rounded-lg">
-          <Typography variant="h2" tag="p" weight="semibold">
-            We will contact you soon.
+          <Typography variant="h3" tag="h3" weight="semibold">
+            Thank you for submitting your comment!
+          </Typography>
+          <Typography variant="p" tag="p">
+            Once it has been approved, it will appeare below!
           </Typography>
         </div>
       ) : (
         <div className="w-full h-full">
           <form
-            className="w-full h-full max-w-4xl mx-auto bg-white p-5 rounded-lg"
+            className="w-full h-full mx-auto bg-white p-5 rounded-lg"
             onSubmit={formik.handleSubmit}
           >
             <Typography variant="h1" tag="h3" weight="semibold" sx="mt-1 mb-2">
-              Contuct Us
+              Live a comment bellow!
             </Typography>
             <FormInput
-              name="name"
+              name="Name"
               id="name"
               value={`${formik.values.name}`}
               onChange={formik.handleChange}
@@ -53,15 +58,22 @@ export default function ContactForm() {
               touched={formik.touched.name}
             />
             <FormInput
-              name="phone"
-              id="phone"
-              value={formik.values.phone}
+              name="Email"
+              id="email"
+              value={formik.values.email}
               onChange={formik.handleChange}
               type="tel"
-              errors={formik.errors.phone}
-              touched={formik.touched.phone}
+              errors={formik.errors.email}
+              touched={formik.touched.email}
             />
-
+            <FormTextarea
+              name="Comment"
+              id="phone"
+              value={formik.values.comment}
+              onChange={formik.handleChange}
+              errors={formik.errors.comment}
+              touched={formik.touched.comment}
+            />
             <input
               type="submit"
               className="py-2 px-3 bg-black text-white rounded-lg cursor-pointer hover:bg-gray-800 active:bg-gray-900 text-sm"

@@ -25,8 +25,17 @@ import { HomeProps } from "../types/homePage";
 import Typography from "../components/UI/typography/Typography";
 import Logo from "../components/logo/Logo";
 import ScrollToTop from "../components/scrollTop/ScrollTop";
-const Home = ({ products, promotion, promotionProducts, about }: HomeProps) => {
-  console.log(promotion);
+import CommentForm from "../components/comment/Comment";
+import { commentQuery } from "../lib/sanity/commentQuery";
+import Comments from "../components/comment/comments/Comments";
+import Search from "../components/search/Search";
+const Home = ({
+  products,
+  promotion,
+  promotionProducts,
+  about,
+  comments,
+}: HomeProps) => {
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency="USD">
       <div className="flex min-h-screen flex-col items-center overflow-hidden">
@@ -55,6 +64,9 @@ const Home = ({ products, promotion, promotionProducts, about }: HomeProps) => {
               </div>
             </div>
           </div>
+          <CommentForm />
+          <Search />
+          <Comments data={comments} />
         </Container>
         <Footer />
         <CartButton />
@@ -65,7 +77,7 @@ const Home = ({ products, promotion, promotionProducts, about }: HomeProps) => {
 };
 
 export default Home;
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const sets = await sanityClient.fetch(merchQueryMainSets);
   const rolls = await sanityClient.fetch(merchQueryMainRolls);
   const nigiri = await sanityClient.fetch(merchQueryMainNigiri);
@@ -73,13 +85,14 @@ export async function getStaticProps() {
   const promotion = await sanityClient.fetch(promotionQuery);
   const about = await sanityClient.fetch(aboutQuery);
   const promotionProducts = await sanityClient.fetch(promotionProductsQuery);
+  const comments = await sanityClient.fetch(commentQuery);
   return {
     props: {
       products: { sets, rolls, nigiri, drinks },
       promotion,
       promotionProducts,
       about,
+      comments,
     },
-    revalidate,
   };
 }

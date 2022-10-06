@@ -5,8 +5,6 @@ import { HeaderProps } from "./types";
 import { urlFor } from "../../lib/sanity/client";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import Bg from "./bg/Bg";
-import BgContainer from "./bg/BgContainer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, EffectCreative, Autoplay } from "swiper";
 import "swiper/css";
@@ -14,6 +12,9 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import Product from "../product/Product";
+const BgContainer = dynamic(() => import("./bg/BgContainer"), {
+  ssr: false,
+});
 const CountDown = dynamic(() => import("./countDown/CountDown"), {
   ssr: false,
 });
@@ -21,16 +22,11 @@ export default function Header({ data, products }: HeaderProps) {
   return (
     <div className="relative w-screen h-screen">
       <div className="absolute w-full h-full bg-black overflow-hidden flex justify-center items-center">
-        {/* <img
-          className="w-screen h-screen"
-          src={`${urlFor(data.image)}`}
-          alt="bgImage"
-        /> */}
         <BgContainer url={data.image} />
       </div>
       <div className="absolute bg-black opacity-50 w-full h-full"></div>
       <Container>
-        <div className="z-10 text-white w-full h-full flex flex-col justify-center items-center gap-5">
+        <div className="z-10 text-white w-full h-full flex flex-col justify-center items-center gap-5 p-2">
           <Typography
             variant="h1"
             tag="h1"

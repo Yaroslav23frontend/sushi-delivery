@@ -16,6 +16,7 @@ import localeText from "./locale/Text";
 import localeBlockContent from "./locale/BlockContent";
 import promotion from "./promotion";
 import about from "./about";
+import comments from "./comments";
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -32,6 +33,7 @@ export default createSchema({
     contact,
     promotion,
     about,
+    comments,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     // blockContent,

@@ -3,7 +3,6 @@ import Stripe from "stripe";
 import { sanityClient } from "../../../lib/sanity/client";
 import { merchQuery } from "../../../lib/sanity/merchQuery";
 import { NextApiRequest, NextApiResponse } from "next";
-import SessionCreateParams from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration
   apiVersion: "2022-08-01",

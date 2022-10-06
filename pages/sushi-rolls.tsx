@@ -6,10 +6,9 @@ import { revalidate } from "../staticProps";
 export default function Rolls({ products }: ProductsProps) {
   return <ProductsPage products={products} />;
 }
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const products = await sanityClient.fetch(merchQueryRolls);
   return {
     props: { products },
-    revalidate,
   };
 }

@@ -38,11 +38,9 @@ export default function Promotion({ products }: ProductsProps) {
     </CartProvider>
   );
 }
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const products = await sanityClient.fetch(promotionProductsQuery);
-  console.log(products);
   return {
     props: { products },
-    revalidate,
   };
 }

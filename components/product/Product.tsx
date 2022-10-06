@@ -3,6 +3,7 @@ import Typography from "../UI/typography/Typography";
 import { BsCartFill } from "react-icons/bs";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 import { urlFor } from "../../lib/sanity/client";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 export default function Product({ data }: ProductProps) {
   const { addItem, cartDetails } = useShoppingCart();
@@ -11,7 +12,6 @@ export default function Product({ data }: ProductProps) {
     data?.promotion !== undefined
       ? data.promotion.reduce((acc, el) => acc + el.promotion, 0)
       : 0;
-  console.log(promotion);
   useEffect(() => {
     const temp = Object.values(cartDetails).filter(
       (el) => el.name === data.name
@@ -20,13 +20,19 @@ export default function Product({ data }: ProductProps) {
       setQuantity(temp[0].quantity);
     }
   }, [cartDetails]);
+  const myLoader = ({ src }: any) => {
+    return `${urlFor(src).width(384).height(160).fit("crop").format("webp")}`;
+  };
   return (
-    <div className="relative flex flex-col h-full justify-between rounded-lg w-full max-w-md shadow-lg">
+    <div className="relative flex flex-col h-full justify-between rounded-lg w-full max-w-sm shadow-lg">
       <div className="relative h-40 w-full overflow-hidden rounded-t-lg">
-        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full max-w-md">
-          <img
-            className="w-full"
-            src={`${urlFor(data.image).width(320)}`}
+        <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full h-full max-w-sm">
+          <Image
+            loader={myLoader}
+            className="w-full h-full"
+            src={data.image}
+            width={384}
+            height={160}
             alt={data.name}
           />
         </div>
@@ -96,7 +102,6 @@ export default function Product({ data }: ProductProps) {
             const item = Object.assign({}, data);
             delete item.categories;
             item.price = data.price - (data.price / 100) * promotion;
-            console.log(item);
             addItem({
               ...item,
               sku: item.id,
