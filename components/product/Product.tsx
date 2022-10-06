@@ -29,7 +29,7 @@ export default function Product({ data }: ProductProps) {
         <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full h-full max-w-sm">
           <Image
             loader={myLoader}
-            className="w-full h-full"
+            className="w-full h-full rounded-t-lg"
             src={data.image}
             width={384}
             height={160}

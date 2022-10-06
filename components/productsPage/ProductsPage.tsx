@@ -4,13 +4,15 @@ import Typography from "../UI/typography/Typography";
 import getStripe from "../../lib/stripe/getStripe";
 import { ProductsProps } from "../product/types";
 import Container from "../container/Container";
-import Footer from "../footer/Footer";
 import Nav from "../nav/Nav";
 import CartButton from "../cart/cartButton/CartButton";
 import Main from "../Main";
 import Search from "../search/Search";
 import ScrollToTop from "../scrollTop/ScrollTop";
-
+import dynamic from "next/dynamic";
+const Footer = dynamic(() => import("../footer/Footer"), {
+  ssr: false,
+});
 export default function ProductsPage({ products }: ProductsProps) {
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency="USD">

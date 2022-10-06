@@ -1,10 +1,10 @@
-import Logo from "../logo/Logo";
 import Container from "../container/Container";
 import Typography from "../UI/typography/Typography";
-import ContactUs from "../../pages/api/contactUs";
-import ContactForm from "../contactUs/ContactUs";
 import GoogleMap from "../googleMap/GoogleMap";
-
+import dynamic from "next/dynamic";
+const ContactForm = dynamic(() => import("../contactUs/ContactUs"), {
+  ssr: false,
+});
 export default function Footer() {
   return (
     <footer id="contact" className="bg-white w-full mt-5">

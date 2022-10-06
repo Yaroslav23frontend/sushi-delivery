@@ -2,20 +2,15 @@ import React from "react";
 import Container from "../container/Container";
 import Typography from "../UI/typography/Typography";
 import { HeaderProps } from "./types";
-import { urlFor } from "../../lib/sanity/client";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, EffectCreative, Autoplay } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
-import Product from "../product/Product";
 const BgContainer = dynamic(() => import("./bg/BgContainer"), {
   ssr: false,
 });
 const CountDown = dynamic(() => import("./countDown/CountDown"), {
+  ssr: false,
+});
+const Corusel = dynamic(() => import("./corusel/Corusel"), {
   ssr: false,
 });
 export default function Header({ data, products }: HeaderProps) {
@@ -40,30 +35,7 @@ export default function Header({ data, products }: HeaderProps) {
             {data.body}
           </Typography>
           <CountDown endDate={data.endDate} />
-          <div className="w-full max-w-xs flex justify-center p-2">
-            <Swiper
-              spaceBetween={30}
-              centeredSlides={true}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
-              modules={[Autoplay]}
-              className="mySwiper"
-            >
-              {products.map((el) => {
-                return (
-                  <SwiperSlide
-                    className="bg-white rounded-lg max-w-xs"
-                    key={el.id}
-                  >
-                    <Product data={el} />
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </div>
-
+          <Corusel products={products} />
           <Link href="/promotion">
             <div className="py-2 px-4 bg-orange-500 rounded-xl cursor-pointer hover:bg-orange-600 active:bg-orange-700">
               Promotion Sets

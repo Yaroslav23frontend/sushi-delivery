@@ -10,12 +10,8 @@ import {
   merchQueryMainSets,
 } from "../lib/sanity/merchQuery";
 import { aboutQuery } from "../lib/sanity/aboutQuery";
-import { revalidate } from "../staticProps";
 import getStripe from "../lib/stripe/getStripe";
-import CartButton from "../components/cart/cartButton/CartButton";
 import Container from "../components/container/Container";
-import Products from "../components/products/Products";
-import Footer from "../components/footer/Footer";
 import Header from "../components/header/Header";
 import {
   promotionProductsQuery,
@@ -25,10 +21,32 @@ import { HomeProps } from "../types/homePage";
 import Typography from "../components/UI/typography/Typography";
 import Logo from "../components/logo/Logo";
 import ScrollToTop from "../components/scrollTop/ScrollTop";
-import CommentForm from "../components/comment/Comment";
 import { commentQuery } from "../lib/sanity/commentQuery";
-import Comments from "../components/comment/comments/Comments";
-import Search from "../components/search/Search";
+import dynamic from "next/dynamic";
+const Comments = dynamic(
+  () => import("../components/comment/comments/Comments"),
+  {
+    ssr: false,
+  }
+);
+const CommentForm = dynamic(() => import("../components/comment/Comment"), {
+  ssr: false,
+});
+const Footer = dynamic(() => import("../components/footer/Footer"), {
+  ssr: false,
+});
+const Products = dynamic(() => import("../components/products/Products"), {
+  ssr: false,
+});
+const CartButton = dynamic(
+  () => import("../components/cart/cartButton/CartButton"),
+  {
+    ssr: false,
+  }
+);
+const Search = dynamic(() => import("../components/search/Search"), {
+  ssr: false,
+});
 const Home = ({
   products,
   promotion,
