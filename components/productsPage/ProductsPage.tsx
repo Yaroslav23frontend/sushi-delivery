@@ -1,4 +1,3 @@
-import Typography from "../UI/typography/Typography";
 import { ProductsProps } from "../product/types";
 import Container from "../container/Container";
 import Nav from "../nav/Nav";
@@ -19,14 +18,6 @@ export default function ProductsPage({ products }: ProductsProps) {
       <Container>
         <Main>
           <div className="flex flex-col w-full items-center self-center">
-            <Typography
-              variant="h1"
-              tag="h1"
-              weight="bold"
-              sx="text-center my-4"
-            >
-              {products[0].categories[0].title}
-            </Typography>
             <Dynamic products={products} />
           </div>
         </Main>

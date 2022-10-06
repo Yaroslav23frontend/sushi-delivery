@@ -8,7 +8,7 @@ export default function CommentItem({
   email,
 }: CommentProps) {
   return (
-    <div className="flex flex-col w-full mx-auto bg-white p-5 rounded-lg gap-2 p-2 rounded-lg shadow-lg">
+    <div className="flex flex-col w-full mx-auto bg-white gap-2 p-2 rounded-lg shadow-lg">
       <Typography variant="h2" tag="p" weight="semibold">
         {comment}
       </Typography>

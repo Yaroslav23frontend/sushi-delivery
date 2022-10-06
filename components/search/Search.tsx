@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { CgSearch } from "react-icons/cg";
 import { BsSearch } from "react-icons/bs";
-import { GrClose } from "react-icons/gr";
 import { RiCloseFill } from "react-icons/ri";
 import FormInput from "../UI/input/Input";
 export default function Search() {

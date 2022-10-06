@@ -1,4 +1,3 @@
-import Product from "../product/Product";
 import Typography from "../UI/typography/Typography";
 import ProductsContainer from "./productsContainer/ProductsContainer";
 import { ProductsProps } from "./types";

@@ -1,18 +1,22 @@
 import { urlFor } from "../../../lib/sanity/client";
 import { BgProps } from "./types";
-import styled from "styled-components";
-const Bg = styled.div<BgProps>`
-  background-image: url(${(props) =>
-    urlFor(props.url)
-      .height(props.height)
-      .width(props.width)
-      .fit("crop")
-      .format("webp")
-      .url()});
-  background-repeat: no-repeat;
-  background-size: cover;
-  content: "";
-  width: 100%;
-  height: 100%;
-`;
+function Bg({ url, width, height }: BgProps) {
+  return (
+    <div
+      style={{
+        backgroundImage: `url(${urlFor(url)
+          .height(height)
+          .width(width)
+          .fit("crop")
+          .format("webp")
+          .url()})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        content: "",
+        width: "100%",
+        height: "100%",
+      }}
+    ></div>
+  );
+}
 export default Bg;

@@ -1,8 +1,4 @@
-import {
-  CartEntry,
-  useShoppingCart,
-  formatCurrencyString,
-} from "use-shopping-cart";
+import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 import Typography from "../../UI/typography/Typography";
 import Button from "../button/Button";
 import { CartItemProps } from "./types";

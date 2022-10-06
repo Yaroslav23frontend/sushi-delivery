@@ -1,11 +1,13 @@
-import { CartDetails, CartProvider, useShoppingCart } from "use-shopping-cart";
+import { CartProvider } from "use-shopping-cart";
 import Container from "../container/Container";
 import Nav from "../nav/Nav";
-import Footer from "../footer/Footer";
 import Main from "../Main";
 import dynamic from "next/dynamic";
 import getStripe from "../../lib/stripe/getStripe";
 const CartItems = dynamic(() => import("./CartItems"), {
+  ssr: false,
+});
+const Footer = dynamic(() => import("../footer/Footer"), {
   ssr: false,
 });
 export default function Cart() {
