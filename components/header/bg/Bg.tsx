@@ -9,6 +9,7 @@ function Bg({ url, width, height }: BgProps) {
           .width(width)
           .fit("crop")
           .format("webp")
+          .quality(80)
           .url()})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
