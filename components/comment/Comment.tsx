@@ -46,7 +46,7 @@ export default function CommentForm() {
             onSubmit={formik.handleSubmit}
           >
             <Typography variant="h1" tag="h3" weight="semibold" sx="mt-1 mb-2">
-              Live a comment bellow!
+              Live a reviews bellow!
             </Typography>
             <FormInput
               name="Name"

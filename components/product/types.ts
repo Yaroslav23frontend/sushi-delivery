@@ -7,6 +7,7 @@ export interface Product {
   currency: string;
   categories: Array<{ title: string; slug: { current: string } }>;
   promotion: Array<{ promotion: number; endDate: string; startDate: string }>;
+  total: number;
 }
 export interface ProductProps {
   data: {

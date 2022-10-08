@@ -36,45 +36,43 @@ export default function CountDown({ endDate }: CountDownProps) {
   }
   return (
     <>
-      {days !== 0 && hours !== 0 && minutes !== 0 && seconds !== 0 && (
-        <div className="flex gap-5">
-          <div className="flex flex-col justify-center items-center">
-            <Typography variant="h1" color="white" weight="bold">{`${
-              days < 10 ? `0${days}` : days
-            }`}</Typography>
-            <Typography tag="span" variant="h3" color="white">
-              Days
-            </Typography>
-          </div>
-          :
-          <div className="flex flex-col justify-center items-center">
-            <Typography variant="h1" weight="bold" color="white">{`${
-              hours < 10 ? `0${hours}` : hours
-            }`}</Typography>
-            <Typography tag="span" variant="h3" color="white">
-              Hours
-            </Typography>
-          </div>
-          :
-          <div className="flex flex-col justify-center items-center">
-            <Typography variant="h1" weight="bold" color="white">{`${
-              minutes < 10 ? `0${minutes}` : minutes
-            }`}</Typography>
-            <Typography tag="span" variant="h3" color="white">
-              Minutes
-            </Typography>
-          </div>
-          :
-          <div className="flex flex-col justify-center items-center">
-            <Typography variant="h1" weight="bold" color="white">{`${
-              seconds < 10 ? `0${seconds}` : seconds
-            }`}</Typography>
-            <Typography tag="span" variant="h3" color="white">
-              Seconds
-            </Typography>
-          </div>
+      <div className="flex gap-5 text-black">
+        <div className="flex flex-col justify-center items-center">
+          <Typography variant="h3" weight="bold">{`${
+            days < 10 ? `0${days}` : days
+          }`}</Typography>
+          <Typography tag="span" variant="span">
+            Days
+          </Typography>
         </div>
-      )}
+        :
+        <div className="flex flex-col justify-center items-center">
+          <Typography variant="h3" weight="bold">{`${
+            hours < 10 ? `0${hours}` : hours
+          }`}</Typography>
+          <Typography tag="span" variant="span">
+            Hours
+          </Typography>
+        </div>
+        :
+        <div className="flex flex-col justify-center items-center">
+          <Typography variant="h3" weight="bold">{`${
+            minutes < 10 ? `0${minutes}` : minutes
+          }`}</Typography>
+          <Typography tag="span" variant="span">
+            Minutes
+          </Typography>
+        </div>
+        :
+        <div className="flex flex-col justify-center items-center">
+          <Typography variant="h3" weight="bold">{`${
+            seconds < 10 ? `0${seconds}` : seconds
+          }`}</Typography>
+          <Typography tag="span" variant="span">
+            Seconds
+          </Typography>
+        </div>
+      </div>
     </>
   );
 }

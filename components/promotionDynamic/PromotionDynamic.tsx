@@ -3,13 +3,14 @@ import getStripe from "../../lib/stripe/getStripe";
 import { ProductsProps } from "../product/types";
 import Product from "../product/Product";
 import Typography from "../UI/typography/Typography";
-import Search from "../search/Search";
+import Search from "../filters/search/Search";
 import CartButton from "../cart/cartButton/CartButton";
 export default function PromotionDynamic({ products }: ProductsProps) {
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency="USD">
       <>
         <div className="flex flex-col w-full items-center self-center">
+          <Search />
           <Typography variant="h1" tag="h1" weight="bold" sx="text-center">
             Promotion
           </Typography>
@@ -19,7 +20,6 @@ export default function PromotionDynamic({ products }: ProductsProps) {
                 return <Product data={el} key={el.id} />;
               })}
               <CartButton />
-              <Search />
             </div>
           </div>
         </div>

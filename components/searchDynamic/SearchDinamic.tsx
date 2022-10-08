@@ -4,13 +4,14 @@ import { ProductsProps } from "../product/types";
 import Product from "../product/Product";
 import Typography from "../UI/typography/Typography";
 import CartButton from "../cart/cartButton/CartButton";
-import Search from "../search/Search";
+import Search from "../filters/search/Search";
 import { useRouter } from "next/router";
 export default function SearchDinamic({ products }: ProductsProps) {
   const router = useRouter();
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency="USD">
       <div className="flex flex-col items-center rounded-lg p-5 w-full h-full">
+        <Search />
         <Typography variant="h1" weight="bold" tag="h1" sx="mt-2">
           {router.query.q !== undefined ? (
             <>
@@ -42,7 +43,6 @@ export default function SearchDinamic({ products }: ProductsProps) {
           ))}
         </div>
         <CartButton />
-        <Search />
       </div>
     </CartProvider>
   );

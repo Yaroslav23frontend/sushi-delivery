@@ -4,46 +4,32 @@ import Typography from "../UI/typography/Typography";
 import { HeaderProps } from "./types";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-const BgContainer = dynamic(() => import("./bg/BgContainer"), {
-  ssr: false,
-});
+
 const CountDown = dynamic(() => import("./countDown/CountDown"), {
   ssr: false,
 });
 export default function Header({ data }: HeaderProps) {
   return (
-    <div className="relative w-screen h-screen">
-      <div className="absolute w-full h-full bg-black overflow-hidden flex justify-center items-center">
-        <BgContainer url={data.image} />
-      </div>
-      <div className="absolute bg-black opacity-50 w-full h-full"></div>
-      <Container>
-        <div className="z-10 text-white w-full h-full flex flex-col justify-center items-center gap-5 p-2">
-          <Typography
-            variant="h1"
-            tag="h1"
-            weight="bold"
-            color="white"
-            sx="text-center"
-          >
-            Delivery of Japanese Cuisine "Sushi"
-          </Typography>
-          {new Date().getTime() < new Date(data.endDate).getTime() &&
-            new Date().getTime() >= new Date(data.startDate).getTime() && (
-              <>
-                <Typography color="white" variant="h3">
-                  {data.body}
-                </Typography>
-                <CountDown endDate={data.endDate} />
-                <Link href="/promotion">
-                  <div className="py-2 px-4 bg-orange-500 rounded-xl cursor-pointer hover:bg-orange-600 active:bg-orange-700">
+    <Container>
+      <div className="z-10 w-full h-full flex flex-col justify-center items-center gap-2 py-4 px-2 rounded-lg shadow-lg">
+        <Typography variant="h2" tag="p" weight="bold" sx="text-center">
+          Delivery of Japanese Cuisine "Sushi"
+        </Typography>
+        {new Date().getTime() < new Date(data.endDate).getTime() &&
+          new Date().getTime() >= new Date(data.startDate).getTime() && (
+            <>
+              <Typography variant="p">{data.body}</Typography>
+              <CountDown endDate={data.endDate} />
+              <Link href="/promotion">
+                <div className="py-1 px-2 bg-orange-500 rounded-xl cursor-pointer hover:bg-orange-600 active:bg-orange-700">
+                  <Typography variant="span" color="white">
                     Promotion Sets
-                  </div>
-                </Link>
-              </>
-            )}
-        </div>
-      </Container>
-    </div>
+                  </Typography>
+                </div>
+              </Link>
+            </>
+          )}
+      </div>
+    </Container>
   );
 }

@@ -1,22 +1,22 @@
 import { CommentProps } from "../components/comment/types";
 import { Product } from "../components/product/types";
 export interface HomeProps {
-  products: {
-    sets: Array<Product>;
-    rolls: Array<Product>;
-    nigiri: Array<Product>;
-    drinks: Array<Product>;
-  };
+  products: Array<Product>;
   promotion: {
     body: string;
     endDate: string;
     startDate: string;
     image: string;
   };
-  promotionProducts: Array<Product>;
   about: {
     image: string;
     body: string;
   };
   comments: Array<CommentProps>;
+  query: {
+    filter: string;
+    sort: string;
+    per_page: string;
+    page: string;
+  };
 }

@@ -5,7 +5,7 @@ export default function Comments({ data }: CommentsProps) {
   return (
     <div className="w-full flex flex-col justify-center p-5 space-y-2 rounded-lg shadow-lg">
       <Typography variant="h1" weight="bold">
-        Comments
+        Reviews
       </Typography>
       {data.map((el) => {
         return (
