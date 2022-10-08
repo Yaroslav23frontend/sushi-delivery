@@ -10,7 +10,7 @@ export default function Products({ products, query }: ProductsProps) {
     const temp = [];
     for (
       let i = 0;
-      i < Math.ceil(products[0]?.total / Number(query.per_page));
+      i < Math.ceil(products[0]?.total / Number(query?.per_page));
       i++
     ) {
       temp.push(i);

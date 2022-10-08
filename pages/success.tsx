@@ -5,10 +5,15 @@ import dynamic from "next/dynamic";
 import Typography from "../components/UI/typography/Typography";
 import Link from "next/link";
 import { useEffect } from "react";
+import { GetServerSideProps } from "next";
+import { mapQuery } from "../lib/sanity/mapQuery";
+import { sanityClient } from "../lib/sanity/client";
+import { MapProps } from "../components/googleMap/types";
+import { SuccessPageProps } from "../types/successPage";
 const Footer = dynamic(() => import("../components/footer/Footer"), {
   ssr: false,
 });
-export default function Success() {
+export default function Success({ map }: SuccessPageProps) {
   useEffect(() => {
     localStorage.removeItem("cart-values");
   }, []);
@@ -32,7 +37,19 @@ export default function Success() {
           </div>
         </Container>
       </Main>
-      <Footer />
+      <Footer url={map.url} mainImage={map.mainImage} />
     </>
   );
 }
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  context.res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
+  const map = await sanityClient.fetch(mapQuery);
+  return {
+    props: {
+      map,
+    },
+  };
+};

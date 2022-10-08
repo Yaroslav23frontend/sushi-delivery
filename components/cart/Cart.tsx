@@ -4,13 +4,14 @@ import Nav from "../nav/Nav";
 import Main from "../Main";
 import dynamic from "next/dynamic";
 import getStripe from "../../lib/stripe/getStripe";
+import { CartProps } from "./types";
 const CartItems = dynamic(() => import("./CartItems"), {
   ssr: false,
 });
 const Footer = dynamic(() => import("../footer/Footer"), {
   ssr: false,
 });
-export default function Cart() {
+export default function Cart({ map }: CartProps) {
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency="USD">
       <>
@@ -20,7 +21,7 @@ export default function Cart() {
             <CartItems />
           </Main>
         </Container>
-        <Footer />
+        <Footer url={map.url} mainImage={map.mainImage} />
       </>
     </CartProvider>
   );

@@ -15,6 +15,7 @@ import { commentQuery } from "../lib/sanity/commentQuery";
 import dynamic from "next/dynamic";
 import Filters from "../components/filters/Filters";
 import { GetServerSideProps } from "next";
+import { mapQuery } from "../lib/sanity/mapQuery";
 const Footer = dynamic(() => import("../components/footer/Footer"), {
   ssr: false,
 });
@@ -22,7 +23,7 @@ const Products = dynamic(() => import("../components/products/Products"), {
   ssr: false,
 });
 
-const Home = ({ products, promotion, about, comments, query }: HomeProps) => {
+const Home = ({ products, promotion, about, query, map }: HomeProps) => {
   return (
     <div className="flex min-h-screen flex-col items-center overflow-hidden">
       <Head>
@@ -51,7 +52,7 @@ const Home = ({ products, promotion, about, comments, query }: HomeProps) => {
           </div>
         </div>
       </Container>
-      <Footer />
+      <Footer url={map.url} mainImage={map.mainImage} />
       <ScrollToTop />
     </div>
   );
@@ -73,13 +74,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     filterQuery(filter === "all" ? null : filter, sort, per_page, page)
   );
   const comments = await sanityClient.fetch(commentQuery);
-
+  const map = await sanityClient.fetch(mapQuery);
   return {
     props: {
       promotion,
       about,
       comments,
       products,
+      map,
       query: {
         filter: filter ? filter : "all",
         sort: sort ? sort : "low",

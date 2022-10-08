@@ -1,12 +1,51 @@
-export default function GoogleMap() {
+import { MapProps } from "./types";
+import { useState, useEffect } from "react";
+import { urlFor } from "../../lib/sanity/client";
+import Link from "next/link";
+import Typography from "../UI/typography/Typography";
+export default function GoogleMap({ mainImage, url }: MapProps) {
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
+  function getWindowsDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height,
+    };
+  }
+  useEffect(() => {
+    const { width, height } = getWindowsDimensions();
+    setWidth(width);
+    setHeight(height);
+  }, []);
   return (
     // Important! Always set the container height explicitly
-    <div className="w-full">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25762.03114875637!2d-76.84567393914783!3d36.18470665090377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89afbe5166a57069%3A0x842a5bd56b0043d0!2sRobertson%20Equipment%20Inc.!5e0!3m2!1sen!2sua!4v1664630084416!5m2!1sen!2sua"
-        className="w-full"
-        loading="lazy"
-      ></iframe>
-    </div>
+    <Link href={url}>
+      <div
+        className="relative"
+        style={{
+          backgroundImage: `url(${urlFor(mainImage)
+            .height(150)
+            .width(width)
+            .fit("crop")
+            .format("webp")
+            .quality(100)
+            .url()})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          content: "",
+          width: "100%",
+          height: "150px",
+        }}
+      >
+        <Link href={url}>
+          <div className="bg-white text-underline absolute py-1 px-2 top-2 left-2">
+            <Typography sx="text-blue-500 hover:underline cursor-pointer">
+              View larger map
+            </Typography>
+          </div>
+        </Link>
+      </div>
+    </Link>
   );
 }

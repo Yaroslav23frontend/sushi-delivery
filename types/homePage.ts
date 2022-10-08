@@ -1,4 +1,5 @@
 import { CommentProps } from "../components/comment/types";
+import { MapProps } from "../components/googleMap/types";
 import { Product } from "../components/product/types";
 export interface HomeProps {
   products: Array<Product>;
@@ -19,4 +20,5 @@ export interface HomeProps {
     per_page: string;
     page: string;
   };
+  map: MapProps;
 }

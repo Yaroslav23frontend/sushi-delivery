@@ -1,17 +1,18 @@
 import Container from "../container/Container";
 import Typography from "../UI/typography/Typography";
 import dynamic from "next/dynamic";
+import { MapProps } from "../googleMap/types";
 const ContactForm = dynamic(() => import("../contactUs/ContactUs"), {
   ssr: false,
 });
 const GoogleMap = dynamic(() => import("../googleMap/GoogleMap"), {
   ssr: false,
 });
-export default function Footer() {
+export default function Footer({ url, mainImage }: MapProps) {
   return (
     <footer id="contact" className="bg-white w-full mt-5">
       <div className="w-full bg-gray-100">
-        <GoogleMap />
+        <GoogleMap url={url} mainImage={mainImage} />
         <Container>
           <div className="w-full grid grid-cols-1 md:grid-cols-2 place-items-stretch bg-gray-100 gap-5 my-5 p-2">
             <ContactForm />

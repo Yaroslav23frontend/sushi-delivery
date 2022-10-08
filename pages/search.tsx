@@ -4,18 +4,18 @@ import Nav from "../components/nav/Nav";
 import Container from "../components/container/Container";
 import { GetServerSideProps } from "next";
 import { sanityClient } from "../lib/sanity/client";
-import { ProductsProps } from "../components/product/types";
 import { searchQuery } from "../lib/sanity/searchQuery";
 import dynamic from "next/dynamic";
 import Search from "../components/filters/search/Search";
-
+import { mapQuery } from "../lib/sanity/mapQuery";
+import { SearchPageProps } from "../types/searchPage";
 const SearchDinamic = dynamic(
   () => import("../components/searchDynamic/SearchDinamic"),
   {
     ssr: false,
   }
 );
-export default function SearchPage({ products }: ProductsProps) {
+export default function SearchPage({ products, map }: SearchPageProps) {
   return (
     <>
       <Nav />
@@ -25,7 +25,7 @@ export default function SearchPage({ products }: ProductsProps) {
           <SearchDinamic products={products} />
         </Container>
       </Main>
-      <Footer />
+      <Footer url={map.url} mainImage={map.mainImage} />
     </>
   );
 }
@@ -49,9 +49,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       notFound: true,
     };
   }
+  const map = await sanityClient.fetch(mapQuery);
   return {
     props: {
       products,
+      map,
     },
   };
 };
