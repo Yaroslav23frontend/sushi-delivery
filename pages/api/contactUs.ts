@@ -11,6 +11,7 @@ export default async function ContactUs(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  res.setHeader('Cache-Control', 's-maxage=10');
   const { name, phone } = JSON.parse(req.body);
   try {
     await client.create({

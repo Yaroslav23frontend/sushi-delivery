@@ -4,14 +4,17 @@ import { promotionProductsQuery } from "../lib/sanity/promotionQuery";
 import Nav from "../components/nav/Nav";
 import Container from "../components/container/Container";
 import Main from "../components/Main";
-import Footer from "../components/footer/Footer";
 import dynamic from "next/dynamic";
+import { GetServerSideProps } from "next";
 const PromotionDynamic = dynamic(
   () => import("../components/promotionDynamic/PromotionDynamic"),
   {
     ssr: false,
   }
 );
+const Footer = dynamic(() => import("../components/footer/Footer"), {
+  ssr: false,
+});
 export default function Promotion({ products }: ProductsProps) {
   return (
     <>
@@ -25,9 +28,13 @@ export default function Promotion({ products }: ProductsProps) {
     </>
   );
 }
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  context.res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
   const products = await sanityClient.fetch(promotionProductsQuery);
   return {
     props: { products },
   };
-}
+};

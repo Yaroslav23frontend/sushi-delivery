@@ -104,6 +104,7 @@ export default function Product({ data }: ProductProps) {
         </div>
 
         <button
+          name="Cart"
           onClick={() => {
             const item = Object.assign({}, data);
             delete item.categories;

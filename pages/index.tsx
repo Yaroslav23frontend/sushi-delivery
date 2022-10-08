@@ -59,6 +59,10 @@ const Home = ({ products, promotion, about, comments, query }: HomeProps) => {
 
 export default Home;
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  context.res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
   const promotion = await sanityClient.fetch(promotionQuery);
   const about = await sanityClient.fetch(aboutQuery);
   const filter = context.query.filter;
@@ -69,6 +73,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     filterQuery(filter === "all" ? null : filter, sort, per_page, page)
   );
   const comments = await sanityClient.fetch(commentQuery);
+
   return {
     props: {
       promotion,

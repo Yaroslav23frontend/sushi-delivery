@@ -12,6 +12,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  res.setHeader('Cache-Control', 's-maxage=10');
   if (req.method === "POST") {
     try {
       // Validate the cart details that were sent from the client.

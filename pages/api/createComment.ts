@@ -11,6 +11,7 @@ export default async function createComment(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  res.setHeader("Cache-Control", "s-maxage=10");
   const { name, email, comment } = JSON.parse(req.body);
   try {
     await client.create({

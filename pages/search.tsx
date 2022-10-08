@@ -7,6 +7,8 @@ import { sanityClient } from "../lib/sanity/client";
 import { ProductsProps } from "../components/product/types";
 import { searchQuery } from "../lib/sanity/searchQuery";
 import dynamic from "next/dynamic";
+import Search from "../components/filters/search/Search";
+
 const SearchDinamic = dynamic(
   () => import("../components/searchDynamic/SearchDinamic"),
   {
@@ -19,6 +21,7 @@ export default function SearchPage({ products }: ProductsProps) {
       <Nav />
       <Main>
         <Container>
+          <Search />
           <SearchDinamic products={products} />
         </Container>
       </Main>
@@ -27,6 +30,10 @@ export default function SearchPage({ products }: ProductsProps) {
   );
 }
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  context.res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
   if (!context.query.q) {
     return {
       props: {

@@ -63,6 +63,7 @@ export default function Filters({ filters }: FiltersProps) {
             <option value="15">15</option>
           </select>
           <button
+            name="Filter"
             type="submit"
             className="border border-gray-300 p-2 rounded-lg shadow-lg bg-gray-50 hover:bg-gray-100 active:bg-gray-100"
           >
