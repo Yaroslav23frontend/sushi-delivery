@@ -1,6 +1,6 @@
 export default {
-  name: "promotion",
-  title: "Promotion",
+  name: "discounts",
+  title: "Discounts",
   type: "document",
   fields: [
     { name: "name", title: "Name", type: "string" },
@@ -15,8 +15,8 @@ export default {
       type: "datetime",
     },
     {
-      name: "promotion",
-      title: "Promotion(%)",
+      name: "rate",
+      title: "Discount rate(%)",
       type: "number",
     },
     {

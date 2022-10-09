@@ -8,14 +8,14 @@ import { useState, useEffect } from "react";
 export default function Product({ data }: ProductProps) {
   const { addItem, cartDetails } = useShoppingCart();
   const [quantity, setQuantity] = useState(0);
-  const endDate = data?.promotion?.map((el) => el.endDate);
-  const startDate = data?.promotion?.map((el) => el.startDate);
-  const promotion =
-    data?.promotion !== undefined
-      ? data.promotion.reduce((acc, el) => acc + el.promotion, 0)
+  const endDate = data?.discounts?.map((el) => el.endDate);
+  const startDate = data?.discounts?.map((el) => el.startDate);
+  const discount =
+    data?.discounts !== undefined
+      ? data.discounts.reduce((acc, el) => acc + el.rate, 0)
       : 0;
-  const prom =
-    promotion > 0 &&
+  const discountActive =
+    discount > 0 &&
     new Date(endDate[endDate.length - 1]).getTime() > new Date().getTime() &&
     new Date(startDate[startDate.length - 1]).getTime() <= new Date().getTime();
   useEffect(() => {
@@ -54,14 +54,14 @@ export default function Product({ data }: ProductProps) {
             {quantity}
           </Typography>
         )}
-        {prom && (
+        {discountActive && (
           <Typography
             color="white"
             variant="span"
             weight="semibold"
             sx="flex justify-center items-center w-10 h-10 p-2 bg-red-500 rounded-full"
           >
-            -{promotion}%
+            -{discount}%
           </Typography>
         )}
       </div>
@@ -79,7 +79,7 @@ export default function Product({ data }: ProductProps) {
           <Typography
             variant="p"
             tag="p"
-            sx={prom ? `line-through` : ""}
+            sx={discountActive ? `line-through` : ""}
             weight="bold"
           >
             {formatCurrencyString({
@@ -87,7 +87,7 @@ export default function Product({ data }: ProductProps) {
               currency: "USD",
             })}
           </Typography>
-          {prom && (
+          {discountActive && (
             <Typography
               variant="p"
               tag="span"
@@ -96,7 +96,7 @@ export default function Product({ data }: ProductProps) {
               sx="text-red-600"
             >
               {formatCurrencyString({
-                value: data.price - (data.price / 100) * promotion,
+                value: data.price - (data.price / 100) * discount,
                 currency: "USD",
               })}
             </Typography>
@@ -108,7 +108,8 @@ export default function Product({ data }: ProductProps) {
           onClick={() => {
             const item = Object.assign({}, data);
             delete item.categories;
-            if (prom) item.price = data.price - (data.price / 100) * promotion;
+            if (discountActive)
+              item.price = data.price - (data.price / 100) * discount;
             addItem({
               ...item,
               sku: item.id,

@@ -21,13 +21,13 @@ export default {
       ],
     },
     {
-      name: "promotion",
-      title: "Promotion",
+      name: "discounts",
+      title: "Discounts",
       type: "array",
       of: [
         {
           type: "reference",
-          to: { type: "promotion" },
+          to: { type: "discounts" },
         },
       ],
     },

@@ -20,10 +20,10 @@ export default function Header({ data }: HeaderProps) {
             <>
               <Typography variant="p">{data.body}</Typography>
               <CountDown endDate={data.endDate} />
-              <Link href="/promotion">
+              <Link href="/discount">
                 <div className="py-1 px-2 bg-orange-500 rounded-xl cursor-pointer hover:bg-orange-600 active:bg-orange-700">
                   <Typography variant="span" color="white">
-                    Promotion Sets
+                    Discount Products
                   </Typography>
                 </div>
               </Link>

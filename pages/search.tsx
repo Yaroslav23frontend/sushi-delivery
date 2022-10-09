@@ -6,7 +6,6 @@ import { GetServerSideProps } from "next";
 import { sanityClient } from "../lib/sanity/client";
 import { searchQuery } from "../lib/sanity/searchQuery";
 import dynamic from "next/dynamic";
-import Search from "../components/filters/search/Search";
 import { mapQuery } from "../lib/sanity/mapQuery";
 import { SearchPageProps } from "../types/searchPage";
 const SearchDinamic = dynamic(
@@ -21,7 +20,6 @@ export default function SearchPage({ products, map }: SearchPageProps) {
       <Nav />
       <Main>
         <Container>
-          <Search />
           <SearchDinamic products={products} />
         </Container>
       </Main>

@@ -5,11 +5,11 @@ import Product from "../product/Product";
 import Typography from "../UI/typography/Typography";
 import Search from "../filters/search/Search";
 import CartButton from "../cart/cartButton/CartButton";
-export default function PromotionDynamic({ products }: ProductsProps) {
+export default function DiscountDynamic({ products }: ProductsProps) {
   return (
     <CartProvider mode="checkout-session" stripe={getStripe()} currency="USD">
       <>
-        <div className="flex flex-col w-full items-center self-center">
+        <div className="flex flex-col w-full items-center self-center p-2">
           <Search />
           <Typography variant="h1" tag="h1" weight="bold" sx="text-center">
             Promotion

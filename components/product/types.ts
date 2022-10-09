@@ -6,7 +6,7 @@ export interface Product {
   description: string;
   currency: string;
   categories: Array<{ title: string; slug: { current: string } }>;
-  promotion: Array<{ promotion: number; endDate: string; startDate: string }>;
+  discounts: Array<{ rate: number; endDate: string; startDate: string }>;
   total: number;
 }
 export interface ProductProps {
@@ -18,8 +18,8 @@ export interface ProductProps {
     description: string;
     currency: string;
     categories?: Array<{ title: string; slug: { current: string } }>;
-    promotion: Array<{
-      promotion: number;
+    discounts: Array<{
+      rate: number;
       endDate: string;
       startDate: string;
     }>;

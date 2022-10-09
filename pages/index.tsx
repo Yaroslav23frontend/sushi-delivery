@@ -6,7 +6,7 @@ import { aboutQuery } from "../lib/sanity/aboutQuery";
 import { filterQuery } from "../lib/sanity/filterQuery";
 import Container from "../components/container/Container";
 import Header from "../components/header/Header";
-import { promotionQuery } from "../lib/sanity/promotionQuery";
+import { discountQuery } from "../lib/sanity/discountQuery";
 import { HomeProps } from "../types/homePage";
 import Typography from "../components/UI/typography/Typography";
 import Logo from "../components/logo/Logo";
@@ -16,12 +16,13 @@ import dynamic from "next/dynamic";
 import Filters from "../components/filters/Filters";
 import { GetServerSideProps } from "next";
 import { mapQuery } from "../lib/sanity/mapQuery";
+import Products from "../components/products/Products";
 const Footer = dynamic(() => import("../components/footer/Footer"), {
   ssr: false,
 });
-const Products = dynamic(() => import("../components/products/Products"), {
-  ssr: false,
-});
+// const Products = dynamic(() => import("../components/products/Products"), {
+//   ssr: false,
+// });
 
 const Home = ({ products, promotion, about, query, map }: HomeProps) => {
   return (
@@ -64,14 +65,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     "Cache-Control",
     "public, s-maxage=10, stale-while-revalidate=59"
   );
-  const promotion = await sanityClient.fetch(promotionQuery);
+  const promotion = await sanityClient.fetch(discountQuery);
   const about = await sanityClient.fetch(aboutQuery);
   const filter = context.query.filter;
   const sort = context.query.sort;
   const per_page = context.query.per_page;
   const page = context.query.page;
   const products = await sanityClient.fetch(
-    filterQuery(filter === "all" ? null : filter, sort, per_page, page)
+    filterQuery(
+      filter === "all" ? null : filter,
+      sort ? sort : "low",
+      per_page ? per_page : "10",
+      page ? page : "1"
+    )
   );
   const comments = await sanityClient.fetch(commentQuery);
   const map = await sanityClient.fetch(mapQuery);
