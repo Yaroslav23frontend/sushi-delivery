@@ -4,12 +4,12 @@ import { RiFilterFill } from "react-icons/ri";
 import { useRouter } from "next/router";
 import { FiltersProps } from "./types";
 export default function Filters({ filters }: FiltersProps) {
-  const [filter, setFilter] = useState(filters?.filter);
+  const [filter, setFilter] = useState(filters?.filter.toLowerCase());
   const [sort, setSort] = useState(filters?.sort);
   const [perPage, setPerPage] = useState(filters?.per_page);
   const router = useRouter();
   function onChangeFilter(e: { target: HTMLSelectElement }) {
-    setFilter(e.target.value);
+    setFilter(e.target.value.toLowerCase());
   }
   function onChangeSort(e: { target: HTMLSelectElement }) {
     setSort(e.target.value);
@@ -22,7 +22,7 @@ export default function Filters({ filters }: FiltersProps) {
     if (filter !== "" || sort !== "" || perPage !== "") {
       router.push(
         `/?${filter && `filter=${filter}`}${sort && `&sort=${sort}`}${
-          perPage && `&per_page=${perPage}&page=${filters?.page}`
+          perPage && `&per_page=${perPage}&page=1`
         }`
       );
     }
@@ -39,11 +39,13 @@ export default function Filters({ filters }: FiltersProps) {
             onChange={onChangeFilter}
             className="block p-2  w-30 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-black shadow-lg"
           >
-            <option defaultValue="all">All</option>
             <option value="sushi-sets">Sushi Sets</option>
             <option value="sushi-rolls">Sushi Rolls</option>
             <option value="nigiri-sushi">Nigiri Sushi</option>
             <option value="drinks">Drinks</option>
+            <option value="all" defaultValue="all">
+              All
+            </option>
           </select>
           <select
             value={sort}
