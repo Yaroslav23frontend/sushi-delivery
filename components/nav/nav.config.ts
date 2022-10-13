@@ -9,10 +9,6 @@ export const navItems: Array<PropsNav> = [
     title: "Contact",
   },
   {
-    link: "#about",
-    title: "About",
-  },
-  {
     link: "/reviews",
     title: "Reviews",
   },
