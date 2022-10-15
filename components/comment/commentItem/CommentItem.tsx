@@ -20,9 +20,11 @@ export default function CommentItem({
             {name}
           </Typography>
         </div>
-        <Typography variant="span" tag="p">
-          {new Date(`${_createdAt}`).toUTCString()}
-        </Typography>
+        {_createdAt && (
+          <Typography variant="span" tag="p">
+            {new Date(`${_createdAt}`).toUTCString()}
+          </Typography>
+        )}
       </div>
     </div>
   );

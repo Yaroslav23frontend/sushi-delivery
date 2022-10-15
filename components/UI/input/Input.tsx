@@ -1,5 +1,5 @@
 import Typography from "../typography/Typography";
-import React, { ForwardRefRenderFunction, InputHTMLAttributes } from "react";
+import React, { ForwardRefRenderFunction } from "react";
 import { InputProps } from "./types";
 const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   props,

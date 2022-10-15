@@ -51,17 +51,19 @@ export default function CartItems() {
           </div>
         )}
       </div>
-      <div className="hidden sm:grid sm:grid-cols-5 w-full  place-items-center mb-2">
-        <Typography weight="bold">
-          {Object.values(cartDetails).length}
-        </Typography>
-        <div></div>
-        <Typography weight="bold">{cartCount}</Typography>
-        <Typography weight="bold" sx="text-center">
-          {formatCurrencyString({ value: totalPrice, currency: "USD" })}
-        </Typography>
-        <button onClick={() => clearCart()}>Clear Cart</button>
-      </div>
+      {Object.values(cartDetails).length !== 0 && (
+        <div className="hidden sm:grid sm:grid-cols-5 w-full  place-items-center mb-2">
+          <Typography weight="bold">
+            {Object.values(cartDetails).length}
+          </Typography>
+          <div></div>
+          <Typography weight="bold">{cartCount}</Typography>
+          <Typography weight="bold" sx="text-center">
+            {formatCurrencyString({ value: totalPrice, currency: "USD" })}
+          </Typography>
+          <button onClick={() => clearCart()}>Clear Cart</button>
+        </div>
+      )}
       {Object.values(cartDetails).length !== 0 && (
         <div className="flex flex-col max-w-xs items-center self-center p-2 rounded-lg justify-center mt-2 border border-gray-500">
           <Typography weight="bold" sx="text-center">

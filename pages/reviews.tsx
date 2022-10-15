@@ -1,11 +1,10 @@
-import Main from "../components/Main";
+import Main from "../components/main/Main";
 import Nav from "../components/nav/Nav";
 import Container from "../components/container/Container";
 import { sanityClient } from "../lib/sanity/client";
 import dynamic from "next/dynamic";
 import Comments from "../components/comment/comments/Comments";
 import { commentQuery } from "../lib/sanity/commentQuery";
-import { CommentsProps } from "../components/comment/comments/types";
 import { GetServerSideProps } from "next";
 import { mapQuery } from "../lib/sanity/mapQuery";
 import { ReviewsPageProps } from "../types/reviewsPage";

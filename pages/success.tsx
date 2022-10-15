@@ -1,6 +1,6 @@
 import Nav from "../components/nav/Nav";
 import Container from "../components/container/Container";
-import Main from "../components/Main";
+import Main from "../components/main/Main";
 import dynamic from "next/dynamic";
 import Typography from "../components/UI/typography/Typography";
 import Link from "next/link";
@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import { GetServerSideProps } from "next";
 import { mapQuery } from "../lib/sanity/mapQuery";
 import { sanityClient } from "../lib/sanity/client";
-import { MapProps } from "../components/googleMap/types";
 import { SuccessPageProps } from "../types/successPage";
 const Footer = dynamic(() => import("../components/footer/Footer"), {
   ssr: false,

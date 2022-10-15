@@ -1,7 +1,7 @@
 import { CartProvider } from "use-shopping-cart";
 import Container from "../container/Container";
 import Nav from "../nav/Nav";
-import Main from "../Main";
+import Main from "../main/Main";
 import dynamic from "next/dynamic";
 import getStripe from "../../lib/stripe/getStripe";
 import { CartProps } from "./types";

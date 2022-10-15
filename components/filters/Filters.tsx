@@ -17,16 +17,16 @@ export default function Filters({ filters }: FiltersProps) {
   function onChangePerPage(e: { target: HTMLSelectElement }) {
     setPerPage(e.target.value);
   }
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (filter !== "" || sort !== "" || perPage !== "") {
-      router.push(
+      await router.push(
         `/?${filter && `filter=${filter}`}${sort && `&sort=${sort}`}${
           perPage && `&per_page=${perPage}&page=1`
         }`
       );
     }
-  }
+  };
   return (
     <div className="w-full p-2">
       <div className="flex justify-start">

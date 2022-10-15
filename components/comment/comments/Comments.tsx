@@ -10,7 +10,7 @@ export default function Comments({ data }: CommentsProps) {
       {data.map((el) => {
         return (
           <CommentItem
-            key={el._createdAt + el.name}
+            key={`${el._createdAt}-${el.name}`}
             email={el.email}
             comment={el.comment}
             name={el.name}

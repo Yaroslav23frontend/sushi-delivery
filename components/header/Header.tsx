@@ -13,7 +13,7 @@ export default function Header({ data }: HeaderProps) {
     <Container>
       <div className="z-10 w-full h-full flex flex-col justify-center items-center gap-2 py-4 px-2 rounded-lg shadow-lg">
         <Typography variant="h2" tag="p" weight="bold" sx="text-center">
-          Delivery of Japanese Cuisine "Sushi"
+          Delivery of Japanese Cuisine &quot;Sushi&quot;
         </Typography>
         {new Date().getTime() < new Date(data.endDate).getTime() &&
           new Date().getTime() >= new Date(data.startDate).getTime() && (
