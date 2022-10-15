@@ -51,22 +51,6 @@ export default function CartItems() {
           </div>
         )}
       </div>
-<<<<<<< HEAD
-=======
-      {Object.values(cartDetails).length !== 0 && (
-        <div className="hidden sm:grid sm:grid-cols-5 w-full  place-items-center mb-2">
-          <Typography weight="bold">
-            {Object.values(cartDetails).length}
-          </Typography>
-          <div></div>
-          <Typography weight="bold">{cartCount}</Typography>
-          <Typography weight="bold" sx="text-center">
-            {formatCurrencyString({ value: totalPrice, currency: "USD" })}
-          </Typography>
-          <button onClick={() => clearCart()}>Clear Cart</button>
-        </div>
-      )}
->>>>>>> 09f86e1a6803740f03bb4a9e068fbec4e62d40d4
       {Object.values(cartDetails).length !== 0 && (
         <>
           <div className="hidden sm:grid sm:grid-cols-5 w-full  place-items-center mb-2">
