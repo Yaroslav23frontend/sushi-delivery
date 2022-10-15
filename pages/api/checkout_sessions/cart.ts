@@ -3,6 +3,7 @@ import Stripe from "stripe";
 import { sanityClient } from "../../../lib/sanity/client";
 import { merchQuery } from "../../../lib/sanity/merchQuery";
 import { NextApiRequest, NextApiResponse } from "next";
+import { CartDetails, Product } from "use-shopping-cart";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration
   apiVersion: "2022-08-01",
@@ -16,9 +17,9 @@ export default async function handler(
   if (req.method === "POST") {
     try {
       // Validate the cart details that were sent from the client.
-      const cartItems = req.body;
+      const cartItems: CartDetails = req.body;
       //Sanity client performs merchQuery
-      let sanityData = await sanityClient.fetch(merchQuery);
+      const sanityData: Array<Product> = await sanityClient.fetch(merchQuery);
       // The POST request is then validated against the data from Sanity.
       const line_items = validateCartItems(sanityData, cartItems);
       const checkoutSession = await stripe.checkout.sessions.create({

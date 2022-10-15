@@ -1,4 +1,4 @@
 export interface ButtonProps {
-  children: any;
+  children: string;
   func: () => void;
 }

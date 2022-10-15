@@ -2,7 +2,7 @@ import { sanityClient } from "../lib/sanity/client";
 import { discountProductsQuery } from "../lib/sanity/discountQuery";
 import Nav from "../components/nav/Nav";
 import Container from "../components/container/Container";
-import Main from "../components/Main";
+import Main from "../components/main/Main";
 import dynamic from "next/dynamic";
 import { GetServerSideProps } from "next";
 import { mapQuery } from "../lib/sanity/mapQuery";

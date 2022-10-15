@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import sanityClient from "@sanity/client";
+import { ContactProps } from "../../components/contactUs/types";
 const config = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
@@ -12,7 +13,7 @@ export default async function ContactUs(
   res: NextApiResponse
 ) {
   res.setHeader("Cache-Control", "s-maxage=10");
-  const { name, phone } = JSON.parse(req.body);
+  const { name, phone }: ContactProps = JSON.parse(req.body);
   try {
     await client.create({
       _type: "contact",

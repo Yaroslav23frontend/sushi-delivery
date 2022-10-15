@@ -13,7 +13,7 @@ export default function CartItem({ item }: CartItemProps) {
       </Typography>
       <Typography weight="semibold" sx="flex items-center gap-2">
         <Button func={() => decrementItem(item.sku)}>-</Button>
-        {item.quantity}
+        <>{item.quantity}</>
         <Button func={() => incrementItem(item.sku)}>+</Button>
       </Typography>
       <Typography weight="semibold">

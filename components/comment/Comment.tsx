@@ -23,7 +23,7 @@ export default function CommentForm() {
           console.log({ ...values });
           setSubmited(true);
         })
-        .catch((err) => {
+        .catch((err: Error) => {
           console.log(err.message);
         });
     },

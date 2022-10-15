@@ -5,7 +5,7 @@ import Link from "next/link";
 import Typography from "../UI/typography/Typography";
 export default function GoogleMap({ mainImage, url }: MapProps) {
   const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+
   function getWindowsDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
@@ -14,9 +14,8 @@ export default function GoogleMap({ mainImage, url }: MapProps) {
     };
   }
   useEffect(() => {
-    const { width, height } = getWindowsDimensions();
+    const { width } = getWindowsDimensions();
     setWidth(width);
-    setHeight(height);
   }, []);
   return (
     // Important! Always set the container height explicitly

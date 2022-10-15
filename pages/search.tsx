@@ -1,4 +1,4 @@
-import Main from "../components/Main";
+import Main from "../components/main/Main";
 import Footer from "../components/footer/Footer";
 import Nav from "../components/nav/Nav";
 import Container from "../components/container/Container";
